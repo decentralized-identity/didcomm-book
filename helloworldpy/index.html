@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    <link rel="canonical" href="https://book.didcomm.org/helloworldpy/">
+    <link rel="shortcut icon" href="../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Helloworldpy - DIDComm Book</title>
+    <link href="../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../js/jquery-3.2.1.min.js"></script>
+    <script src="../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "\"Hello World\" in Python", url: "#_top", children: [
+              {title: "Step 1: Install packages", url: "#step-1-install-packages" },
+              {title: "Step 2: Imports", url: "#step-2-imports" },
+              {title: "Step 3: Resolvers", url: "#step-3-resolvers" },
+              {title: "Step 4: Create DIDs", url: "#step-4-create-dids" },
+              {title: "Step 5: Encrypt and pack the message", url: "#step-5-encrypt-and-pack-the-message" },
+              {title: "Step 6: Receive and unpack the message", url: "#step-6-receive-and-unpack-the-message" },
+          ]},
+        ];
+
+    </script>
+    <script src="../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    
+
+    <h2 id="hello-world-in-python">"Hello World" in Python</h2>
+<p>This simple "Hello World" example shows how Alice can create an encrypted message to Bob. In that case, we are using <a href="https://github.com/sicpa-dlab/didcomm-python">DIDComm Python</a> and <a href="https://github.com/sicpa-dlab/peer-did-python">Peerdid Python</a> libraries from <a href="https://www.sicpa.com">SICPA</a>.</p>
+<h3 id="step-1-install-packages">Step 1: Install packages</h3>
+<p>Once you set up your python environment, you need to install the following packages:</p>
+<pre><code>pip install didcomm
+pip install peerdid
+pip install json
+</code></pre>
+<p>The code in the following sections can be executed in a single python file or executed online in this <a href="https://mybinder.org/v2/gh/rodolfomiranda/didcomm-hello-world-py/HEAD?labpath=HelloWorld.ipynb">Binder interactive Jupyter notebook</a>.</p>
+<h3 id="step-2-imports">Step 2: Imports</h3>
+<p>First, we need to import all required functions, clases and types from <code>didcomm</code> and <code>peerdid</code> libraries as follows:</p>
+<pre><code>from didcomm.common.types import DID, VerificationMethodType, VerificationMaterial, VerificationMaterialFormat
+from didcomm.did_doc.did_doc import DIDDoc, VerificationMethod, DIDCommService
+from didcomm.did_doc.did_resolver import DIDResolver
+from didcomm.message import Message
+from didcomm.secrets.secrets_resolver_demo import SecretsResolverDemo
+from didcomm.unpack import unpack, UnpackResult
+from didcomm.common.resolvers import ResolversConfig
+from didcomm.pack_encrypted import pack_encrypted, PackEncryptedConfig, PackEncryptedResult
+from didcomm.secrets.secrets_util import generate_x25519_keys_as_jwk_dict, generate_ed25519_keys_as_jwk_dict, jwk_to_secret
+from peerdid import peer_did
+from peerdid.did_doc import DIDDocPeerDID
+from peerdid.types import VerificationMaterialAuthentication, VerificationMethodTypeAuthentication, VerificationMaterialAgreement, VerificationMethodTypeAgreement, VerificationMaterialFormatPeerDID
+import json
+</code></pre>
+<h3 id="step-3-resolvers">Step 3: Resolvers</h3>
+<p>In this step we add two Resolvers needed by DIDComm and the libraries:</p>
+<p><strong>Secret resolver:</strong></p>
+<p>This sample code needs a storage to keep the generated key pair secrets. It will then be referenced by the library as a <code>secrets_resolver</code>. We can instantiate it as follows:
+<code>secrets_resolver = SecretsResolverDemo()</code>
+Note that the <code>SecretsResolverDemo</code> simply stores the keys in a text file named <code>secrets.json</code>. As you've just realized, this secret storage is anything but secure. Keep in mind that securing keys is of utmost importance for a self-sovereign identity; never use it in production.</p>
+<p><strong>DID Resolver:</strong></p>
+<p>DIDComm only works if your code knows how to resolve DIDs to DID documents. There are various libraries that provide that feature. For example, the <a href="https://github.com/decentralized-identity/universal-resolver">Universal Resolver</a> can be used. In this walk-through, we'll provide a simple stub that minimizes dependencies and keeps things as simple as possible. Click <a href="https://mybinder.org/v2/gh/rodolfomiranda/didcomm-hello-world-py/HEAD?labpath=HelloWorld.ipynb">here</a> for full example where you'll find the code that do the trick.</p>
+<h3 id="step-4-create-dids">Step 4: Create DIDs</h3>
+<p>Using <code>create_simple_peer_did</code> helper function, Alice and Bob can create their DID Peer that they will share and use when communicating privately between each other. This function creates a basic DID Peer with only one Agreement key, one Authentication key, and no Service part. You can find the helper function and the full code <a href="https://mybinder.org/v2/gh/rodolfomiranda/didcomm-hello-world-py/HEAD?labpath=HelloWorld.ipynb">here</a>. </p>
+<pre><code>alice_did = await create_simple_peer_did()
+print(&quot;Alice's DID:&quot;, alice_did)
+bob_did = await create_simple_peer_did()
+print(&quot;Bob's DID:&quot;, bob_did)
+</code></pre>
+<p>You should get something similar to:</p>
+<pre><code>Alice's DID: did:peer:2.Ez6LSt4Jscr227NFyuzKHT85haVE4AFVXm1tDwYeZ5xenxMmW.Vz6MkfvwnoNS6Cto38MEMbqdnypVDN7gS4oAMaHFkjAUse5JE
+Bob's DID: did:peer:2.Ez6LSetXDUvD8rBSei5TU5ew7VRdWyNBr5mAsxr6EoHFTxt9f.Vz6Mkty3Nu98rnrHfk1GBCurF7EFKY5Vb34FAJNJCMhwzduk3
+</code></pre>
+<p>Remember that while creating these simple DIDs, our helper function also stores the private keys in the <code>secrets_resolver</code>. In a real implementation, Alice will have her own secure store in her own wallet, and Bob will have a separated secure store in his own wallet.
+Also, those Peer DIDs can be resolved into DID documents that contain the <em>Authentication</em> and <em>Agreement</em> public keys.</p>
+<h3 id="step-5-encrypt-and-pack-the-message">Step 5: Encrypt and pack the message</h3>
+<p>Alice can create a simple "Hello World" message with:</p>
+<pre><code>message = Message(
+    body = {&quot;msg&quot;: &quot;Hello World&quot;},
+    id = &quot;unique-id-24160d23ed1d&quot;,
+    type = &quot;my-protocol/1.0&quot;,
+    frm = alice_did,
+    to = [bob_did]
+)
+</code></pre>
+<p>Note that the message includes an <code>id</code> that is mandatory and has to be unique to Alice. Also includes a <code>type</code>, also mandatory, that points to the protocol identifier that we've just invented. The <code>body</code> contains the actual message in an structured way associated by our <code>my-protocol/1.0</code>. Attributes <code>from</code> and <code>to</code> are optional. Beware that in the code above the property <code>from</code> was replaced by <code>frm</code> due to a conflict of reserved words in Python; the conversion to the correct property (<code>from</code>) is handled internally by the library.</p>
+<p><a href="https://identity.foundation/didcomm-messaging/spec/v2.0/#message-formats">DIDComm</a> defines three message formats: plaintext, signed, and encrypted. We are going to use the latter since it is the most common for most applications. In that case, the message will be encrypted so only Bob can see it.
+The final packed message can be generated with this code:</p>
+<pre><code>packed_msg = await pack_encrypted(
+    resolvers_config = ResolversConfig(
+        secrets_resolver = secrets_resolver,
+        did_resolver = DIDResolverPeerDID()
+    ),
+    message = message,
+    frm = alice_did,
+    to = bob_did,
+    sign_frm = None,
+    pack_config = PackEncryptedConfig(protect_sender_id=False)
+)
+</code></pre>
+<p>This library also offers the option of anonymous encryption, encryption with no repudation, and message signing. Note also that we pass a resolver configuration pointing to our secrets store and the DID resolver.
+If you take a look at the packed message, you'll see that the content was hidden in the encryption:</p>
+<pre><code>print(packed_msg.packed_msg[:200]+&quot;...&quot;)
+</code></pre>
+<p><code>{"protected":"eyJ0eXAiOiJhcHBsaWNhdGlvbi9kaWRjb21tLWVuY3J5cHRlZCtqc29uIiwiYWxnIjoiRUNESC0xUFUrQTI1NktXIiwiZW5jIjoiQTI1NkNCQy1IUzUxMiIsImFwdSI6IlpHbGtPbkJsWlhJNk1pNUZlalpNVTNJM1pWaFlObXBxYjI0MFpFVmFWaz...</code></p>
+<h3 id="step-6-receive-and-unpack-the-message">Step 6: Receive and unpack the message</h3>
+<p>Alice will send the packed message to Bob using a transport. Once received, Bob can unpack it with the following code:</p>
+<pre><code>unpack_msg = await unpack(
+    resolvers_config=ResolversConfig(
+        secrets_resolver=secrets_resolver,
+        did_resolver=DIDResolverPeerDID()
+    ),
+    packed_msg=packed_msg.packed_msg
+)
+</code></pre>
+<p>Note that we also passed the resolver config as before.
+Finally, Bob can see Alice's message by:</p>
+<pre><code>print(unpack_msg.message.body[&quot;msg&quot;])
+</code></pre>
+<p><code>Hello World</code></p>
+
+  <br>
+    
+
+    <br>
+</div>
+
+<footer class="container-fluid wm-page-content">
+  <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

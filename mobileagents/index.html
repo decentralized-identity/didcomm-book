@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    <link rel="canonical" href="https://book.didcomm.org/mobileagents/">
+    <link rel="shortcut icon" href="../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Dealing with mobile agents - DIDComm Book</title>
+    <link href="../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../js/jquery-3.2.1.min.js"></script>
+    <script src="../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "Dealing with mobile agents", url: "#_top", children: [
+              {title: "Routing Protocol", url: "#routing-protocol" },
+              {title: "Return Route", url: "#return-route" },
+              {title: "Solution via Mediator", url: "#solution-via-mediator" },
+          ]},
+        ];
+
+    </script>
+    <script src="../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    
+
+    <h1 id="dealing-with-mobile-agents">Dealing with mobile agents</h1>
+<p>Mobile agents are a key component in many decentralized identity solutions. Individuals holding Identity Wallets on their mobile phones, and IoT devices transmitting secure information from remote locations are some common examples of mobile agents. The ability to roam from different networks and change connectivity seamlessly is a great feature. However it comes at the expense that agents are unable to declare a unique network address where to be reached. Also, that obstacle becomes more complex when agents are hidden inside network firewalls.</p>
+<p>Additionally, <a href="https://identity.foundation/didcomm-messaging/spec/">DIDComm Messaging</a> specifies that:
+* <a href="https://identity.foundation/didcomm-messaging/spec/v2.0/#transports">Transports</a> are <em>simplex</em>, they only transfer messages from sender to receiver. No information about the effects or results from a message is transmitted over the same connection.
+* Parties may declare a <code>serviceEndpoint</code> in their DID Document. However DID Documents are mainly static and updating them, if possible, is not an instant process.</p>
+<p>Given the above mentioned situation, the question is <strong>how a mobile agent can receive a DIDComm message</strong></p>
+<p>The answer is  <strong><a href="https://identity.foundation/didcomm-messaging/spec/v2.0/#routing-protocol-20">Routing Protocol 2.0</a></strong>, that can be also complemented by the <strong>Return-Route</strong> extension.</p>
+<h2 id="routing-protocol">Routing Protocol</h2>
+<p>The <a href="https://identity.foundation/didcomm-messaging/spec/v2.0/#routing-protocol-20">Routing Protocol</a> defines a partially trusted party called <em>Mediator</em> to facilitate message delivery. Senders can pass messages to a mediator, so next, the mediator can forward them to the final destination. Of course, the final message to the receiver is encrypted and obscured to the intermediate mediator or mediators.</p>
+<p><img alt="routing image" src="https://identity.foundation/didcomm-messaging/collateral/routing-roles.png" /></p>
+<p>Message from the sender to the mediator is of type <code>forward</code> and contains the encrypted messages to the receiver as <code>attachments</code> . Also, by this means, recipients can declare a mediator's <code>serviceEndpoint</code> as its own <code>serviceEndpoint</code> to receive messages.</p>
+<h2 id="return-route">Return Route</h2>
+<p>Althougt not fully necessary to solve the mobile agent problem, the <em>Return-Route</em> extension facilitates the communication by enabling bi-directional communication on the same transport, even when one party has no public endpoint. Messages can flow back in response to inbound messages over the same connection.
+That means that if the <code>return-route</code> header is present in a message with a value different to <code>none</code>, the receiver of a message can reply back in the same channel that was already established without the need to expose an endpoint.</p>
+<h2 id="solution-via-mediator">Solution via Mediator</h2>
+<p>With those two elements a solution can be developed to cope with our problem. The process can be described as follow:
+1. The mobile agent sends a message to register to a Mediator following a predefined protocol called <strong><a href="https://github.com/hyperledger/aries-rfcs/tree/b3a3942ef052039e73cd23d847f42947f8287da2/features/0211-route-coordination">Mediator Coordinator Protocol</a></strong>. The message must contain the <code>return-route</code> header.
+2. The Mediator responds back to the mobile agent in the same channel that was already opened in the first step. In the response, the mediator assigns a own <code>serviceEndpoint</code> to the mobile agent, that later can be used in when sending messages to other parties.
+3. Those third parties, when receiving a message from the mobile agent, can respond using the Routing Protocol by sending a <code>forward</code> message to the Mediator that contains the encrypted response to the mobile agent as an attachment.
+4. The Mediator should hold the message, since there is no way to pass it to the mobile agent directly.
+5. Using a predefined protocol called <strong><a href="https://github.com/hyperledger/aries-rfcs/blob/cab12f80217ab3aab6243e69051c3442a62a0b45/features/0685-pickup-v2/README.md">Pickup Protocol</a></strong>, the mobile agent contacts the Mediator who can respond back in the same channel forwarding all held messages from third parties.</p>
+
+  <br>
+    
+
+    <br>
+</div>
+
+<footer class="container-fluid wm-page-content">
+  <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

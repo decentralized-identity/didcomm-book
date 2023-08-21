@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    <link rel="canonical" href="https://book.didcomm.org/problemcodes/">
+    <link rel="shortcut icon" href="../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Problem Codes - DIDComm Book</title>
+    <link href="../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../js/jquery-3.2.1.min.js"></script>
+    <script src="../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "Problem Codes", url: "#_top", children: [
+          ]},
+        ];
+
+    </script>
+    <script src="../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    
+
+    <h1 id="problem-codes">Problem Codes</h1>
+<p>Problems are reported by a specific message defined in the <a href="https://identity.foundation/didcomm-messaging/spec/#problem-reports">Problem Report 2.0</a> protocol. That message looks like this:</p>
+<pre><code>{
+  &quot;type&quot;: &quot;https://didcomm.org/report-problem/2.0/problem-report&quot;,
+  &quot;id&quot;: &quot;7c9de639-c51c-4d60-ab95-103fa613c805&quot;,
+  &quot;pthid&quot;: &quot;1e513ad4-48c9-444e-9e7e-5b8b45c5e325&quot;,
+  &quot;ack&quot;: [&quot;1e513ad4-48c9-444e-9e7e-5b8b45c5e325&quot;],
+  &quot;body&quot;: {
+    &quot;code&quot;: &quot;e.p.xfer.cant-use-endpoint&quot;,
+    &quot;comment&quot;: &quot;Unable to use the {1} endpoint for {2}.&quot;,
+    &quot;args&quot;: [
+      &quot;https://agents.r.us/inbox&quot;,
+      &quot;did:sov:C805sNYhMrjHiqZDTUASHg&quot;
+    ],
+    &quot;escalate_to&quot;: &quot;mailto:admin@foo.org&quot;
+  }
+}
+</code></pre>
+<p>One of the most importan headers of that message is the <code>code</code> header that categorizes, in a machine readable format, what went wrong.
+<code>code</code> follows a structured format defined in <a href="https://identity.foundation/didcomm-messaging/spec/v2.0/#problem-codes">Problem Codes</a> on the specification.</p>
+<p>In short, the code is contructed as a sequence like:
+<code>{sorter}.{scope}.{general_descriptor}.{specific_descriptor}.{more_specific_descriptor}..</code></p>
+<ul>
+<li><code>{sorter}</code> can be either <code>e</code> it is an error, or <code>w</code> id it is a warning.</li>
+<li><code>{scope}</code> can be either <code>p</code> if belongs to a protocol, or <code>m</code> if it was triggered by a previous message.</li>
+<li><code>{descriptors}</code> is a kebab-case sequence of descriptors separated by <code>.</code> where the semantics get progressively more detailed reading left to right.</li>
+</ul>
+<p>In this section we are listing a list of predefined codes that can be used by themselves, or as prefixes to more specific descriptors:</p>
+<table>
+<thead>
+<tr>
+<th>Token</th>
+<th>Value of <code>comment</code> string</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>trust</code></td>
+<td>Failed to achieve required trust.</td>
+<td>Typically this code indicates incorrect or suboptimal behavior by the sender of a previous message in a protocol. For example, a protocol required a known sender but a message arrived anoncrypted instead &mdash; or the encryption is well formed and usable, but is considered weak. Problems with this descriptor are similar to those reported by HTTP's <code>401</code>, <code>403</code>, or <code>407</code> status codes.</td>
+</tr>
+<tr>
+<td><code>trust.crypto</code></td>
+<td>Cryptographic operation failed.</td>
+<td>A cryptographic operation cannot be performed, or it gives results that indicate tampering or incorrectness. For example, a key is invalid &mdash; or the key types used by another party are not supported &mdash; or a signature doesn't verify &mdash; or a message won't decrypt with the specified key.</td>
+</tr>
+<tr>
+<td><code>xfer</code></td>
+<td>Unable to transport data.</td>
+<td>The problem is with the mechanics of moving messages or associated data over a transport. For example, the sender failed to download an external attachment &mdash; or attempted to contact an endpoint, but found nobody listening on the specified port.</td>
+</tr>
+<tr>
+<td><code>did</code></td>
+<td>DID is unusable.</td>
+<td>A DID is unusable because its method is unsupported &mdash; or because its DID doc cannot be parsed &mdash; or because its DID doc lacks required data.</td>
+</tr>
+<tr>
+<td><code>msg</code></td>
+<td>Bad message.</td>
+<td>Something is wrong with content as seen by application-level protocols (i.e., in a plaintext message). For example, the message might lack a required field, use an unsupported version, or hold data with logical contradictions. Problems in this category resemble HTTP's <code>400</code> status code.</td>
+</tr>
+<tr>
+<td><code>me</code></td>
+<td>Internal error.</td>
+<td>The problem is with conditions inside the problem sender's system. For example, the sender is too busy to do the work entailed by the next step in the active protocol. Problems in this category resemble HTTP's <code>5xx</code> status codes.</td>
+</tr>
+<tr>
+<td><code>me.res</code></td>
+<td>A required resource is inadequate or unavailable.</td>
+<td>The following subdescriptors are also defined: <code>me.res.net</code>, <code>me.res.memory</code>, <code>me.res.storage</code>, <code>me.res.compute</code>, <code>me.res.money</code></td>
+</tr>
+<tr>
+<td><code>req</code></td>
+<td>Circumstances don't satisfy requirements.</td>
+<td>A behavior occurred out of order or without satisfying certain preconditions &mdash; or circumstances changed in a way that violates constraints. For example, a protocol that books plane tickets fails because, halfway through, it is discovered that all tickets on the flight have been sold.</td>
+</tr>
+<tr>
+<td><code>req.time</code></td>
+<td>Failed to satisfy timing constraints.</td>
+<td>A message has expired &mdash; or a protocol has timed out &mdash; or it is the wrong time of day/day of week.</td>
+</tr>
+<tr>
+<td><code>legal</code></td>
+<td>Failed for legal reasons.</td>
+<td>An injunction or a regulatory requirement prevents progress on the workflow. Compare HTTP status code <code>451</code>.</td>
+</tr>
+</tbody>
+</table>
+
+  <br>
+    
+
+    <br>
+</div>
+
+<footer class="container-fluid wm-page-content">
+  <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    <link rel="canonical" href="https://book.didcomm.org/migratorscript/">
+    <link rel="shortcut icon" href="../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>V1 --> v2 migrator script - DIDComm Book</title>
+    <link href="../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../js/jquery-3.2.1.min.js"></script>
+    <script src="../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "V1 --\u0026gt; v2 migrator script", url: "#_top", children: [
+              {title: "Header and decorator mappings", url: "#header-and-decorator-mappings" },
+          ]},
+        ];
+
+    </script>
+    <script src="../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    
+
+    <h1 id="v1-v2-migrator-script">V1 --&gt; v2 migrator script</h1>
+<h2 id="header-and-decorator-mappings">Header and decorator mappings</h2>
+<table>
+<thead>
+<tr>
+<th>v1</th>
+<th>v2</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>@id</td>
+<td>id</td>
+<td></td>
+</tr>
+<tr>
+<td>@type</td>
+<td>type</td>
+<td></td>
+</tr>
+<tr>
+<td>~thread.thid</td>
+<td>thid</td>
+<td></td>
+</tr>
+<tr>
+<td>~thread.pthid</td>
+<td>pthid</td>
+<td></td>
+</tr>
+<tr>
+<td>~thread.sender_order</td>
+<td>sender_order</td>
+<td>see <a href="https://github.com/decentralized-identity/didcomm-messaging/blob/main/extensions/advanced_sequencing/main.md">Advanced Sequencing Extension</a></td>
+</tr>
+<tr>
+<td>~thread.received_orders</td>
+<td>received_order</td>
+<td>see <a href="https://github.com/decentralized-identity/didcomm-messaging/blob/main/extensions/advanced_sequencing/main.md">Advanced Sequencing Extension</a></td>
+</tr>
+<tr>
+<td>~thread.goal_code</td>
+<td>body.goal_code</td>
+<td></td>
+</tr>
+<tr>
+<td>goal_code</td>
+<td>body.goal_code</td>
+<td></td>
+</tr>
+<tr>
+<td>goal</td>
+<td>body.goal</td>
+<td></td>
+</tr>
+<tr>
+<td>~l10n</td>
+<td>l10n</td>
+<td>see <a href="https://github.com/decentralized-identity/didcomm-messaging/blob/main/extensions/l10n/main.md">L10n Extension</a></td>
+</tr>
+<tr>
+<td>~transport.return_route</td>
+<td>return_route</td>
+<td>see <a href="https://github.com/decentralized-identity/didcomm-messaging/blob/main/extensions/return_route/main.md">Return-Route Extension</a></td>
+</tr>
+<tr>
+<td>~timing.expires_time</td>
+<td>expires_time</td>
+<td>v1 use timestamp format as "2019-01-25 18:25Z", v2 use unixtime seconds since 1970-01-01T00:00:00Z</td>
+</tr>
+<tr>
+<td>sent_time</td>
+<td>created_time</td>
+<td>v1 use timestamp format as "2019-01-25 18:25Z", v2 use unixtime seconds since 1970-01-01T00:00:00Z</td>
+</tr>
+<tr>
+<td>handler</td>
+<td>handler</td>
+<td></td>
+</tr>
+<tr>
+<td>~trace</td>
+<td>trace</td>
+<td></td>
+</tr>
+<tr>
+<td>~attach</td>
+<td>attachments</td>
+<td>an array of attachments</td>
+</tr>
+<tr>
+<td>~attach[n].@id</td>
+<td>attachments[n].id</td>
+<td></td>
+</tr>
+<tr>
+<td>~attach[n].mime_type</td>
+<td>attachments[n].media_type</td>
+<td></td>
+</tr>
+<tr>
+<td>~attach[n].filename</td>
+<td>attachments[n].filename</td>
+<td></td>
+</tr>
+<tr>
+<td>~attach[n].description</td>
+<td>attachments[n].description</td>
+<td></td>
+</tr>
+<tr>
+<td>~attach[n].lastmod_time</td>
+<td>attachments[n].lastmod_time</td>
+<td></td>
+</tr>
+<tr>
+<td>~attach[n].byte_count</td>
+<td>attachments[n].byte_count</td>
+<td></td>
+</tr>
+<tr>
+<td>~attach[n].filename</td>
+<td>attachments[n].filename</td>
+<td></td>
+</tr>
+<tr>
+<td>~attach[n].data</td>
+<td>attachments[n].data</td>
+<td></td>
+</tr>
+<tr>
+<td>~attach[n].data.jws</td>
+<td>attachments[n].data.jws</td>
+<td></td>
+</tr>
+<tr>
+<td>~attach[n].data.sha256</td>
+<td>attachments[n].data.hash</td>
+<td></td>
+</tr>
+<tr>
+<td>~attach[n].data.links</td>
+<td>attachments[n].data.links</td>
+<td></td>
+</tr>
+<tr>
+<td>~attach[n].data.base64</td>
+<td>attachments[n].data.base64</td>
+<td></td>
+</tr>
+<tr>
+<td>~attach[n].data.json</td>
+<td>attachments[n].data.json</td>
+<td></td>
+</tr>
+<tr>
+<td>problem_code</td>
+<td>body.code</td>
+<td>in Problem Report Protocol</td>
+</tr>
+<tr>
+<td>comment</td>
+<td>body.comment</td>
+<td>in Problem Report Protocol</td>
+</tr>
+</tbody>
+</table>
+
+  <br>
+    
+
+    <br>
+</div>
+
+<footer class="container-fluid wm-page-content">
+  <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

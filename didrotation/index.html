@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    <link rel="canonical" href="https://book.didcomm.org/didrotation/">
+    <link rel="shortcut icon" href="../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Didrotation - DIDComm Book</title>
+    <link href="../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../js/jquery-3.2.1.min.js"></script>
+    <script src="../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "DID Rotation", url: "#_top", children: [
+          ]},
+        ];
+
+    </script>
+    <script src="../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    
+
+    <h2 id="did-rotation">DID Rotation</h2>
+<p><a href="https://identity.foundation/didcomm-messaging/spec/v2.0/">DIDComm Messaging</a> relies on the <a href="https://www.w3.org/TR/did-core/">DIDs</a>, and associated <a href="https://www.w3.org/TR/did-core/#dfn-did-documents">DID Documents</a>, of the two peers involved in the communication. Those parties are responsible to secure their keys by performing rutinely key rotations, even if they are not compromised, and to make other changes in the DID Documents as needed, such as service endpoints. DIDComm has no involvement in that procedure that is particular to each DID method; nevertheless and provided that the DID does not change, the communication can keep flowing normally.</p>
+<p>However there are cases when the DID (not the DID Document) need to be rotated by one of the parties, such as in the following three cases:
+1. At the beginning of a connection: its common that the initial message is in the form of an Out of Band message that it is unencrypted per definition, and may be observed by another party or transmitted in an unsecure channel such as a QR code or a URL posted in an email or webpage. The DID used in the OOB should be considered as a temporal DID just to start the conversation, but it is highly recommended that it is rotated afterwards to improve privacy.
+2. When keys inside a DID Document need to be rotated and the DID method does not allow updating the DID Document with new rotated keys, as is the case for <a href="https://w3c-ccg.github.io/did-method-key/">did:key</a>.
+3. If there is a need to move to a different DID method for whatever reason (security, flexibility, interoperability, etc)</p>
+<p><a href="https://identity.foundation/didcomm-messaging/spec/v2.0/#did-rotation">DIDComm</a> defines a specific header to handle DID rotation. This header is called <code>from_prior</code> and can be used in any message sent to the other party. That message must include the <code>from_prior</code> header that is a standard JWT token conformed with:
+- Header:
+  - <code>typ</code>: <code>jwt</code>
+  - <code>alg</code>: verification algorithm such as <code>EdDSA</code>
+  - <code>crv</code>: curve name
+  - <code>kid</code>: key id from previous DID that is used in the signature of this JWT
+- Payload:
+  - <code>sub</code>: the new DID
+  - <code>iss</code>: the previous DID
+  - <code>iat</code>: datetime in seconds
+- Signature: from the previous DID and key defined in the <code>kid</code></p>
+<p>Once a DIDComm agent receives a message from an unknown DID, it must:
+1. check if there’s a <code>from_prior</code> header
+2. if exists, extract the DID from the <code>iss</code> and validate if it matches a known DID
+3. validate JWT signatures using the key defined in <code>kid</code> and extracted from previous DID defined in <code>iss</code>
+4. if all validations are successful, the new DID should be stored for future communications with the previously known agent</p>
+<p>The sender, who's doing the rotation, should continue to send the rotation header until they receive a message from the other party using the new DID. This allows for continuity even if one party is offline or not processing messages for a while.</p>
+<p>Example code showing a DID Rotation after an Out of Band message can be found in the section <a href="startConnection">Starting, using and ending a DIDComm connection</a> from this Guidebook.</p>
+<p>Since DIDComm is asynchronous in nature, messages can arrive in different order. Sender and receiver should take care to:
+- Sender: avoid starting a DID rotation in the middle of multiple message conversations. If DID rotation arrives out of order, some messages may be discarded by the recipient.
+- Receiver: messages received from the old DID but after the message that performs the DID rotation must be discarded to reduce the risk of potentially compromised keys.</p>
+<p>Finally, DID rotation allows a special case when rotating to <em>nothing</em> that denotes the <strong>end of the relationship</strong>. In this case the DID should be omitted from the <code>from</code> header and from the <code>sub</code> field of the <code>from_prior</code> header.</p>
+
+  <br>
+    
+
+    <br>
+</div>
+
+<footer class="container-fluid wm-page-content">
+  <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

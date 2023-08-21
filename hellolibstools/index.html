@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    <link rel="canonical" href="https://book.didcomm.org/hellolibstools/">
+    <link rel="shortcut icon" href="../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Choosing libraries and tools - DIDComm Book</title>
+    <link href="../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../js/jquery-3.2.1.min.js"></script>
+    <script src="../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "Choosing libraries and tools", url: "#_top", children: [
+              {title: "Available Releases", url: "#available-releases" },
+              {title: "Reference Implementations", url: "#reference-implementations" },
+              {title: "Tools", url: "#tools" },
+          ]},
+        ];
+
+    </script>
+    <script src="../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    
+
+    <h1 id="choosing-libraries-and-tools">Choosing libraries and tools</h1>
+<p>This is a list of libraries and tools available to DIDComm developers.</p>
+<p>Much of this information comes from this <a href="https://cloud.dsr-corporation.com/index.php/s/EzED9i2dQcMXi6w">IIW presentation</a> and <a href="https://cloud.dsr-corporation.com/index.php/s/kZEMQeMR5c2sxG5">slides</a>.</p>
+<h2 id="available-releases">Available Releases</h2>
+<ul>
+<li><a href="https://pypi.org/project/didcomm/">PyPi DIDComm Release</a></li>
+<li><a href="https://pypi.org/project/peerdid/">PyPi Peer DID Release</a></li>
+<li><a href="https://mvnrepository.com/artifact/org.didcommx/didcomm/0.1.0">Maven DIDComm Release</a></li>
+<li><a href="https://mvnrepository.com/artifact/org.didcommx/peerdid/0.2.0">Maven Peer DID Release</a></li>
+<li><a href="https://crates.io/crates/didcomm">Crate DIDComm Release</a></li>
+</ul>
+<h2 id="reference-implementations">Reference Implementations</h2>
+<p>These reference implementations provide a demonstration and examples in several programming languages.</p>
+<ul>
+<li>Python<ul>
+<li><a href="https://github.com/sicpa-dlab/didcomm-python">DIDComm Python</a></li>
+<li><a href="https://github.com/sicpa-dlab/peer-did-python">Peer DID Python</a></li>
+</ul>
+</li>
+<li>Java, Kotlin, Android <ul>
+<li><a href="https://github.com/sicpa-dlab/didcomm-jvm">DIDComm Java, Kotlin, Android</a></li>
+<li><a href="https://github.com/sicpa-dlab/peer-did-jvm">Peer DID Java, Kotlin, Android</a></li>
+</ul>
+</li>
+<li>RUST<ul>
+<li><a href="https://github.com/sicpa-dlab/didcomm-rust">DIDComm RUST</a><ul>
+<li><a href="https://github.com/sicpa-dlab/didcomm-rust/tree/main/wasm">JavaScript/TypeScript via WASM</a></li>
+<li><a href="https://github.com/sicpa-dlab/didcomm-rust/tree/main/wrappers/swift">iOS via wrapper</a> is WIP<ul>
+<li>other languages can be supported via wrappers</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="tools">Tools</h2>
+<p>DIDComm v2 developers are contributing to projects that provide important tools for DIDComm v2.</p>
+<ul>
+<li>ECDH-1PU<ul>
+<li>JVM<ul>
+<li><a href="https://bitbucket.org/connect2id/nimbus-jose-jwt/">Nimbus Jose JWT</a></li>
+</ul>
+</li>
+<li>Python<ul>
+<li><a href="https://github.com/lepture/authlib">Authlib</a></li>
+</ul>
+</li>
+<li>Rust<ul>
+<li><a href="https://github.com/hyperledger/aries-askar/tree/main/askar-crypto">Aries Askar</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="https://identity.foundation/didcomm-messaging/spec/v2.0/#did-rotation">DID rotation</a></li>
+<li>Forward protocol - Used by default for <a href="https://identity.foundation/didcomm-messaging/spec/#routing">routing</a> DIDComm messages.</li>
+<li><a href="https://github.com/sicpa-dlab/didcomm-python/blob/ca962db30ac7c1492ed6e3654575cce2dd3a5e0e/didcomm/protocols/routing/forward.py">Python example</a></li>
+<li><a href="https://github.com/sicpa-dlab/didcomm-jvm/blob/476fc3ed17d4dfe3b11ec891ae5bfa1f52ab7a4e/lib/src/main/kotlin/org/didcommx/didcomm/protocols/routing/ForwardMessage.kt">Kotlin example</a></li>
+<li><a href="https://github.com/sicpa-dlab/didcomm-rust/tree/9a24b3b60f07a11822666dda46e5616a138af056/src/protocols/routing">RUST example</a> </li>
+<li>Peer DID<ul>
+<li>Static layers of support only (similar to did:key method).  But more support for dynamic updates.</li>
+</ul>
+</li>
+</ul>
+
+  <br>
+    
+
+    <br>
+</div>
+
+<footer class="container-fluid wm-page-content">
+  <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

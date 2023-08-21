@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    <link rel="canonical" href="https://book.didcomm.org/oidc/">
+    <link rel="shortcut icon" href="../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Oidc - DIDComm Book</title>
+    <link href="../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../js/jquery-3.2.1.min.js"></script>
+    <script src="../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "OID4VC", url: "#_top", children: [
+              {title: "Password Friendly Security Model", url: "#password-friendly-security-model" },
+              {title: "Different Connection Model", url: "#different-connection-model" },
+              {title: "Message Types", url: "#message-types" },
+          ]},
+          {title: "Combined Use", url: "#combined-use", children: [
+          ]},
+        ];
+
+    </script>
+    <script src="../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    
+
+    <h2 id="oid4vc">OID4VC</h2>
+<p>DIDComm is often compared with OpenID for Verifiable Credentials (OID4VC). </p>
+<p>These protocols do have overlapping concerns as related to Verifiable Credentials, but approach the exchange of them differently. In addition to the similarities, the each have some unique and useful properties.</p>
+<h3 id="password-friendly-security-model">Password Friendly Security Model</h3>
+<p>The flow of OID4VC allows for an iframe to be used for the verification of a password or other secrets. This allows the user to authenticate to the Identity Provider (IdP) without the Relying Party (RP) being able to observe the exchange. This is really the sweet spot for OpenID, and has been carried to the VC exchange protocols as well. DIDComm does not currently have a direct replacement for this flow.</p>
+<h3 id="different-connection-model">Different Connection Model</h3>
+<p>The OpenID based flow doesn't allow for very effective communication without the user in the loop. This is sometimes desirable, but limits it's applicability for more automated flows.</p>
+<p>DIDComm has the ability to transfer messages without involvement of the user, when applicable. </p>
+<h3 id="message-types">Message Types</h3>
+<p>DIDComm has the built-in ability to transfer protocol messages of any type, not only those concerned with the issuance or verification of Verifiable Credentials. This allows for richer interaction beyond the uses focused on Verifable Credentials.</p>
+<h2 id="combined-use">Combined Use</h2>
+<p>The different properties of the protocols make them very useful to each other.</p>
+<p>When exchanging a credential with OID4VC, a DID is often passed. If that DID resolves to a DID Document with a DIDComm Service Endpoint, then future, rich interactions can be continued via DIDComm.</p>
+<p>If the parties in a DIDComm relationship need to verify identity via secret checking with an RP, they can lean on OID4VC (or OpenID, if a credential is not involved) for that interaction.</p>
+
+  <br>
+    
+
+    <br>
+</div>
+
+<footer class="container-fluid wm-page-content">
+  <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

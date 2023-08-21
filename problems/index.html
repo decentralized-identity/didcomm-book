@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    <link rel="canonical" href="https://book.didcomm.org/problems/">
+    <link rel="shortcut icon" href="../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Problems - DIDComm Book</title>
+    <link href="../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../js/jquery-3.2.1.min.js"></script>
+    <script src="../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "Timeouts", url: "#_top", children: [
+          ]},
+          {title: "Cybersecurity considerations for problem reports", url: "#cybersecurity-considerations-for-problem-reports", children: [
+          ]},
+        ];
+
+    </script>
+    <script src="../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    
+
+    <h2 id="timeouts">Timeouts</h2>
+<p>It is a best practice to ponder appropriate timeout settings when designing application-level protocols atop DIDComm. A protocol for conducting live music over the internet should probably time out its messages to cue musicians within milliseconds, whereas a protocol to apply for college may need timeouts that are days or weeks long. A protocol definition should communicate timeout assumptions like these.</p>
+<p>Individual implementers of a protocol should also ponder whether they need timeouts more aggressive than those of the general community. Perhaps a college application protocol allows the process to unfold over weeks -- but an app that promises it can help someone apply to college in 5 minutes shouldn't use default timeouts in the messages it sends.</p>
+<h2 id="cybersecurity-considerations-for-problem-reports">Cybersecurity considerations for problem reports</h2>
+<p>Ethical and unethical hackers deliberately trigger errors on systems to understand what exploits are possible. We expect this to happen with DIDComm. Therefore, the troubleshooting and transparency that comes from problem reports needs to be weighed against the risk of disclosing too much information. The following considerations are recommended.</p>
+<ol>
+<li>Problem reports do not have to be sent (only) to the party who triggers a problem. Sometimes, a different (or additional) audience may be appropriate.</li>
+<li>The <code>problem-report</code> message type is deliberately decoupled from the versioning and release status of other protocols, so it cannot be used for feature sniffing.</li>
+<li>Fields that encourage careless, recursive information dumping (e.g., Java's <code>Throwable.cause</code>) do not appear in <code>problem-report</code>.</li>
+<li>The <code>comment</code> and <code>args</code> properties of a <code>problem-report</code> are separated, with <code>comment</code> mapping consistently to a <code>code</code>. This means that the risk of disclosing too much information is concentrated in the value of <code>args</code>, not <code>comment</code>. Values placed in <code>args</code> should be scrubbed of anything sensitive.</li>
+<li>Sending problem reports to an unknown party is more risky than sending them to someone with known characteristics. (Because DIDComm's normal mode is mutual authentication via DIDs, and because DIDComm connections may accumulate credential-based context, this is a manageable risk.)</li>
+<li>Sending problem reports immediately may be more risky than sending them with a modest, random delay. This makes denial-of-service attacks and temporal correlation harder, and is the same principle that motivates login dialogs to pause before reporting an incorrect password. </li>
+</ol>
+
+  <br>
+    
+
+    <br>
+</div>
+
+<footer class="container-fluid wm-page-content">
+  <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

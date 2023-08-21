@@ -1,9 +1,0 @@
-site_name: DIDComm Book
-site_url: https://book.didcomm.org/
-theme: windmill
-nav:
-  - Home: index.md
-  - Applications: didcomm_verticals.md
-  - Routing: routing.md
-  - Extensions: extensions.md
-  - FAQ:  faq.md
