@@ -2,6 +2,9 @@ name: Build DIDComm Book using MkDocs
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the main branch
+env:
+  MKDOCS_VERSION: 1.4.3
+
 on:
   push:
     branches: [main]
@@ -24,7 +27,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install mkdocs-material
+          pip install mkdocs==${{ env.MKDOCS_VERSION }} mkdocs-material
 
       - name: Deploy
         run: |
