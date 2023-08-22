@@ -1,9 +1,19 @@
 site_name: DIDComm Book
 site_url: https://book.didcomm.org/
-theme: windmill
+theme: material
+theme:
+  name: material
+  palette:
+    primary: blue grey
+  features:
+    - navigation.path
+
 nav:
   - Home: index.md
-  - Applications: didcomm_verticals.md
+  - Applications: didcomm_verticals
   - Routing: routing.md
   - Extensions: extensions.md
   - FAQ:  faq.md
+markdown_extensions:
+  - toc:
+      permalink: true
