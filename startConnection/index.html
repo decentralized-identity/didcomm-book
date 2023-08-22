@@ -1,71 +1,375 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  
-  
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    
-    <link rel="canonical" href="https://book.didcomm.org/startConnection/">
-    <link rel="shortcut icon" href="../img/favicon.ico">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-    <title>startConnection - DIDComm Book</title>
-    <link href="../css/bootstrap-3.3.7.min.css" rel="stylesheet">
-    <link href="../css/font-awesome-4.7.0.css" rel="stylesheet">
-    <link href="../css/base.css" rel="stylesheet">
-    <link rel="stylesheet" href="../css/highlight.css">
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-    <![endif]-->
 
-    <script src="../js/jquery-3.2.1.min.js"></script>
-    <script src="../js/bootstrap-3.3.7.min.js"></script>
-    <script src="../js/highlight.pack.js"></script>
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
     
-    <base target="_top">
-    <script>
-      var base_url = '..';
-      var is_top_frame = false;
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://book.didcomm.org/startConnection/">
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.20">
+    
+    
+      
+        <title>startConnection - DIDComm Book</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.eebd395e.min.css">
+      
         
-        var pageToc = [
-          {title: "Starting, using and ending a DIDComm connection", url: "#_top", children: [
-              {title: "Step 1: Imports", url: "#step-1-imports" },
-              {title: "Step 3: Resolvers", url: "#step-3-resolvers" },
-              {title: "Step 3: Out of Band Invitation", url: "#step-3-out-of-band-invitation" },
-              {title: "Step 4: Receiving the OOB message", url: "#step-4-receiving-the-oob-message" },
-              {title: "Step 5: Sending the message to Alice", url: "#step-5-sending-the-message-to-alice" },
-              {title: "Step 5: Alice responding back to Bob with a rotated DID", url: "#step-5-alice-responding-back-to-bob-with-a-rotated-did" },
-              {title: "Step 6: What\u0027s next --\u0026gt; Protocols", url: "#step-6-whats-next-protocols" },
-              {title: "Step 7: Ending a relationship", url: "#step-7-ending-a-relationship" },
-          ]},
-        ];
-
-    </script>
-    <script src="../js/base.js"></script> 
-</head>
-
-<body>
-<script>
-if (is_top_frame) { $('body').addClass('wm-top-page'); }
-</script>
-
-
-
-<div class="container-fluid wm-page-content">
-  <a name="_top"></a>
-    
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ecc896b0.min.css">
+      
+      
 
     
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
 
-    <h2 id="starting-using-and-ending-a-didcomm-connection">Starting, using and ending a DIDComm connection</h2>
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="indigo">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#starting-using-and-ending-a-didcomm-connection" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="DIDComm Book" class="md-header__button md-logo" aria-label="DIDComm Book" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            DIDComm Book
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              startConnection
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="DIDComm Book" class="md-nav__button md-logo" aria-label="DIDComm Book" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    DIDComm Book
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../didcomm_verticals" class="md-nav__link">
+        Applications
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../routing/" class="md-nav__link">
+        Routing
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../extensions/" class="md-nav__link">
+        Extensions
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../faq/" class="md-nav__link">
+        FAQ
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#starting-using-and-ending-a-didcomm-connection" class="md-nav__link">
+    Starting, using and ending a DIDComm connection
+  </a>
+  
+    <nav class="md-nav" aria-label="Starting, using and ending a DIDComm connection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-imports" class="md-nav__link">
+    Step 1: Imports
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-resolvers" class="md-nav__link">
+    Step 3: Resolvers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-out-of-band-invitation" class="md-nav__link">
+    Step 3: Out of Band Invitation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-receiving-the-oob-message" class="md-nav__link">
+    Step 4: Receiving the OOB message
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-5-sending-the-message-to-alice" class="md-nav__link">
+    Step 5: Sending the message to Alice
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-5-alice-responding-back-to-bob-with-a-rotated-did" class="md-nav__link">
+    Step 5: Alice responding back to Bob with a rotated DID
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-6-whats-next-protocols" class="md-nav__link">
+    Step 6: What's next --&gt; Protocols
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-7-ending-a-relationship" class="md-nav__link">
+    Step 7: Ending a relationship
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  <h1>startConnection</h1>
+
+<h2 id="starting-using-and-ending-a-didcomm-connection">Starting, using and ending a DIDComm connection<a class="headerlink" href="#starting-using-and-ending-a-didcomm-connection" title="Permanent link">&para;</a></h2>
 <p>This tutorial shows how Alice can invite Bob to start a connection, send and receive encrypted messages using an https transport, and end the relationship.</p>
 <p>The code relies on <a href="https://github.com/sicpa-dlab/didcomm-python">DIDComm Python</a> and <a href="https://github.com/sicpa-dlab/peer-did-python">Peerdid Python</a> libraries from <a href="https://www.sicpa.com">SICPA</a>.</p>
 <p>The code in the following sections can be executed in a single python file or executed online in this <a href="https://mybinder.org/v2/gh/rodolfomiranda/didcomm-hello-world-py/HEAD?labpath=StartConnection.ipynb">Binder interactive Jupyter notebook</a></p>
-<h3 id="step-1-imports">Step 1: Imports</h3>
+<h3 id="step-1-imports">Step 1: Imports<a class="headerlink" href="#step-1-imports" title="Permanent link">&para;</a></h3>
 <p>First, we need to import all required functions, clases and types from <code>didcomm</code> and <code>peerdid</code> libraries.</p>
 <pre><code>import json
 import base64
@@ -87,7 +391,7 @@ from peerdid import peer_did
 from peerdid.did_doc import DIDDocPeerDID
 from peerdid.types import VerificationMaterialAuthentication, VerificationMethodTypeAuthentication, VerificationMaterialAgreement, VerificationMethodTypeAgreement, VerificationMaterialFormatPeerDID
 </code></pre>
-<h3 id="step-3-resolvers">Step 3: Resolvers</h3>
+<h3 id="step-3-resolvers">Step 3: Resolvers<a class="headerlink" href="#step-3-resolvers" title="Permanent link">&para;</a></h3>
 <p>In this step we add two Resolvers needed by DIDComm and the libraries:</p>
 <p><strong>Secret resolver:</strong></p>
 <p>This sample code needs a storage to keep the generated key pair secrets. It will then be referenced by the library as a <code>secrets_resolver</code>. We can instantiate it as follows:
@@ -95,7 +399,7 @@ from peerdid.types import VerificationMaterialAuthentication, VerificationMethod
 Note that the <code>SecretsResolverDemo</code> simply stores the keys in a text file named <code>secrets.json</code>. As you've just realized, this secret storage is anything but secure. Keep in mind that securing keys is of utmost importance for a self-sovereign identity; never use it in production.</p>
 <p><strong>DID Resolver:</strong></p>
 <p>DIDComm only works if your code knows how to resolve DIDs to DID documents. There are various libraries that provide that feature. For example, the <a href="https://github.com/decentralized-identity/universal-resolver">Universal Resolver</a> can be used. In this walk-through, we'll provide a simple stub that minimizes dependencies and keeps things as simple as possible. Click <a href="https://mybinder.org/v2/gh/rodolfomiranda/didcomm-hello-world-py/HEAD?labpath=HelloWorld.ipynb">here</a> for full example where you'll find the code that do the trick.</p>
-<h3 id="step-3-out-of-band-invitation">Step 3: Out of Band Invitation</h3>
+<h3 id="step-3-out-of-band-invitation">Step 3: Out of Band Invitation<a class="headerlink" href="#step-3-out-of-band-invitation" title="Permanent link">&para;</a></h3>
 <p>Using our <code>create_peer_did</code> helper function, Alice will create a DID Peer to be shared in the OOB invitation. Since an OOB invitation is unencrypted and may be observed by another party, this DID should not be considered private and must be rotated later for privacy.
 Alice DID also contains a <code>service</code> part that tells Bob the <code>serviceEndpoint</code> where she accepts messages. In this case Alice provides an <code>https</code> endpoint. For other cases additional <a href="https://identity.foundation/didcomm-messaging/spec/v2.0/#routing-protocol-20">Routing</a> may be required.</p>
 <pre><code>alice_did_oob = await create_peer_did(1, 1, service_endpoint=&quot;https://www.example.com/alice&quot;)
@@ -136,7 +440,7 @@ print(oob_url)
 plt.imshow(image , cmap = 'gray')
 </code></pre>
 <p>-- INSERT_QR_CODE_IMAGE_HERE --</p>
-<h3 id="step-4-receiving-the-oob-message">Step 4: Receiving the OOB message</h3>
+<h3 id="step-4-receiving-the-oob-message">Step 4: Receiving the OOB message<a class="headerlink" href="#step-4-receiving-the-oob-message" title="Permanent link">&para;</a></h3>
 <p>Once Bob receives the email or scan the QR code, he can easily decod it and read Alice's message:</p>
 <pre><code>received_msg_encoded = oob_url.split(&quot;=&quot;)[1]
 received_msg_decoded = json.loads(str(base64.urlsafe_b64decode(received_msg_encoded + &quot;==&quot;), &quot;utf-8&quot;))
@@ -175,7 +479,7 @@ print(&quot;Bob's DID:&quot;, bob_did)
     pack_config = PackEncryptedConfig(protect_sender_id=False)
 )
 </code></pre>
-<h3 id="step-5-sending-the-message-to-alice">Step 5: Sending the message to Alice</h3>
+<h3 id="step-5-sending-the-message-to-alice">Step 5: Sending the message to Alice<a class="headerlink" href="#step-5-sending-the-message-to-alice" title="Permanent link">&para;</a></h3>
 <p>From the received message, Bob can get and resolve Alice's DID into a DID Document. He can use a <a href="https://dev.uniresolver.io">Universal Resolver</a> or just our helper class as we use in the following lines:</p>
 <pre><code>alice_did_doc = json.loads(peer_did.resolve_peer_did(received_msg_decoded[&quot;from&quot;]))
 print(alice_did_doc)
@@ -192,7 +496,7 @@ print(alice_endpoint)
 resp = requests.post(alice_endpoint, headers=headers, data = bob_packed_msg.packed_msg)
 </code></pre>
 <p>In a real scenario, you will receive a success http response code in the range of 2XX such as a 202. This case will fail since it's not a real endpoint.</p>
-<h3 id="step-5-alice-responding-back-to-bob-with-a-rotated-did">Step 5: Alice responding back to Bob with a rotated DID</h3>
+<h3 id="step-5-alice-responding-back-to-bob-with-a-rotated-did">Step 5: Alice responding back to Bob with a rotated DID<a class="headerlink" href="#step-5-alice-responding-back-to-bob-with-a-rotated-did" title="Permanent link">&para;</a></h3>
 <p>Alice has finally received a response back from Bob at her endpoint. The encrypted message is in the body of the POST request that can be unpacked and decrypted with the following code:</p>
 <pre><code>bob_unpack_msg = await unpack(
     resolvers_config=ResolversConfig(
@@ -256,9 +560,9 @@ headers = {&quot;Content-Type&quot;: &quot;application/didcomm-encrypted+json&qu
 resp = requests.post(bob_endpoint, headers=headers, data = alice_packed_msg.packed_msg)
 </code></pre>
 <p>Bob will receive the message in his endpoint, unpack and decrypt, and get the new Alice's DID. He must store Alice's new DID and use it in subsequent communications.</p>
-<h3 id="step-6-whats-next-protocols">Step 6: What's next --&gt; Protocols</h3>
+<h3 id="step-6-whats-next-protocols">Step 6: What's next --&gt; Protocols<a class="headerlink" href="#step-6-whats-next-protocols" title="Permanent link">&para;</a></h3>
 <p>Now Alice and Bob have a private way to communicate. This communication channel can be used whenever they need. Normally, messages passed back and forth will follow a protocol that can be understood by both. We won't cover protocols in this tutorial. You can read more about protocols in Chapter 9 of the <a href="https://identity.foundation/didcomm-messaging/spec/v2.0/#protocols">DIDComm Messaging specification</a></p>
-<h3 id="step-7-ending-a-relationship">Step 7: Ending a relationship</h3>
+<h3 id="step-7-ending-a-relationship">Step 7: Ending a relationship<a class="headerlink" href="#step-7-ending-a-relationship" title="Permanent link">&para;</a></h3>
 <p>Alice and Bob can use the channel forever. They know how to pass messages and even how to rotate a DID if needed. If for any reason, Alice (or Bob) need to end the relationship, she can simply send a message rotating the DID to nothing. That is achieved by ommiting the <code>sub</code> in the <code>from_prior</code> and sending the message without a <code>from</code> attribute of the message as it's shown below:</p>
 <pre><code>from_prior_end = FromPrior(iss=alice_did_new, sub=None)
 
@@ -282,15 +586,47 @@ alice_end_packed_msg = await pack_encrypted(
 )
 </code></pre>
 
-  <br>
-    
 
-    <br>
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
 </div>
-
-<footer class="container-fluid wm-page-content">
-  <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+      
+    </div>
+  </div>
 </footer>
-
-</body>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.path"], "search": "../assets/javascripts/workers/search.74e28a9f.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.220ee61c.min.js"></script>
+      
+    
+  </body>
 </html>
