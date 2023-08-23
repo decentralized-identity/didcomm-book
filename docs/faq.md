@@ -34,6 +34,6 @@ DIDComm protocols also co-exist nicely with other protocols common in the Decent
 
 DIDComm builds on this basic ability to pass messages between parties to provide something deliberately different in architecture. DIDComm is a message based protocol, designed specifically to be friendly to the devices in most common use by humans. This includes built in message routing that allows human oriented devices as well as enterprise participants. This architectural model allows for interactions to be initiated be either party, allowing a much richer interaction model than API based approaches.
 
-In native support of DIDComm isn't your goal, than you can easily use one of several codebases that support DIDComm and offer HTTP APIs for backend integration, handling not only DIDComm, but credential and other interactions as well.
+If native support of DIDComm isn't your goal, than you can easily use one of several codebases that support DIDComm and offer HTTP APIs for backend integration, handling not only DIDComm, but credential and other interactions as well.
 
 In short, it easily augments any web infrastructure, provides a rich interaction model that goes beyond API approaches, and does not require removal of any existing infrastructure, systems, or protocol support.
