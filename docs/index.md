@@ -6,6 +6,8 @@ This is a living doc, updated and expanded regularly by the [DIDComm User Group]
 
 >This version of the book focuses on [DIDComm v2](https://identity.foundation/didcomm-messaging/spec/v2.0/) (the one incubated by DIF, finalized in early 2022). For info about migration from [DIDComm v1](https://github.com/hyperledger/aries-rfcs/tree/main/concepts/0005-didcomm), see [Appendix: Migration from DIDComm v1](migration-v1.md). A new version of DIDComm, v3, is imagined. This would be an IETF standard that builds on v2 with a session construct, improved binary support, leaner messages for IoT, and so forth. When we have links for that work, we'll add them here. 
 
+>This book is a community-supported resource. Corrections and contributions are welcome at our [GitHub Repo](https://github.com/decentralized-identity/didcomm-book/).
+
 ## Contents
 
 1. [Why DIDComm?](why)
