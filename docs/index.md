@@ -16,7 +16,8 @@ This is a living doc, updated and expanded regularly by the [DIDComm User Group]
     4. [Hello World in Python](helloworldpy)
     5. [Starting, using and ending a DIDComm connection](startConnection)
 4. [Threading](threading)
-5. Protocols
+5. Applications
+6. Protocols
     1. Implementing a protocol
     2. Designing your own protocol
        1. When this makes sense
@@ -24,7 +25,7 @@ This is a living doc, updated and expanded regularly by the [DIDComm User Group]
        3. Best practices
     3. Sharing your protocol
     4. Co-protocols
-6. Recipes
+7. Recipes
     1. Debugging
     2. [Timeouts](timeouts)
     3. Retries
@@ -34,7 +35,7 @@ This is a living doc, updated and expanded regularly by the [DIDComm User Group]
     7. Using DIDComm security outside DIDComm
     8. [Dealing with mobile agents](mobileagents)
     9. [Problem Codes](problemcodes)
-7. Safety
+8. Safety
     1. [Privacy](privacy)
     2. Security
         1. Authcrypt vs. Anoncrypt
@@ -44,11 +45,11 @@ This is a living doc, updated and expanded regularly by the [DIDComm User Group]
     4. [DID rotation](didrotation)
     5. [Perfect forward secrecy](pfs)
     6. [Man in the middle](mitm)
-8. [Routing](routing)
-9. [Extensions](extensions)
-10. [Frequently Asked Questions](faq)
+9. [Routing](routing)
+10. [Extensions](extensions)
+11. [Frequently Asked Questions](faq)
     1. [OpenID4VC](oidc)
-11. Appendix: Migration from DIDComm v1
+12. Appendix: Migration from DIDComm v1
     1. [What's new](whatsnew)
     2. Migrator script
 
