@@ -1,8 +1,5 @@
-# DIDComm v2 scrapbook
+# Community Presentations
 Here is a chronological list of DIDComm v2 presentations, products, services, efforts, and more. Feel free to submit new links or updates [here](https://github.com/decentralized-identity/didcomm.org/tree/main/site/content/book/v2/scrapbook).
-
-## DIDComm v2 libs
-You can find the known DIDComm v2 libs in the Hello World [libraries section](https://didcomm.org/book/v2/hellolibstools)
 
 ## Chronological scrapbook of DIDComm v2 presentations, usage, efforts, and more
 * Agent Development - [Nessus DIDComm v1 and v2 PoC](https://github.com/tdiesler/nessus-didcomm/releases)

@@ -1,19 +1,57 @@
 site_name: DIDComm Book
 site_url: https://book.didcomm.org/
-theme: material
 theme:
   name: material
   palette:
     primary: blue grey
   features:
     - navigation.path
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.indexes
 
 nav:
-  - Home: index.md
-  - Applications: didcomm_verticals
-  - Routing: routing.md
-  - Extensions: extensions.md
-  - FAQ:  faq.md
+  - Overview: 
+    - Home: index.md
+    - Why: why.md
+    - Applications: 
+      - index.md
+
+    - FAQ:  faq.md
+    - OpenID4VC: oidc.md
+    - scrapbook.md
+  - Quick Start: 
+    - intro.md
+    - basics.md
+    - 'Hello World':
+      - hellolibstools.md
+      - helloencrypt.md
+      - helloworldpy.md
+      - startConnection.md
+    - libraries.md
+  - Protocols:
+    - applications/index.md
+    - applications/vc_tech_vertical.md
+    - applications/human_communication_tech_vertical.md
+    - developing_protocols.md
+  - Advanced Topics:
+    - threading.md
+    - Routing: routing.md
+    - Extensions: extensions.md
+    - timeouts.md
+    - mobileagents.md
+    - problemcodes.md
+    - privacy.md
+    - didrotation.md
+    - pfs.md
+    - mitm.md
+    - authentication.md
+    - problems.md
+    - whatsnew.md
+    - migratorscript.md
+  - Join: 
+    - workinggroups.md
+    - repos.md
 markdown_extensions:
   - toc:
       permalink: true
