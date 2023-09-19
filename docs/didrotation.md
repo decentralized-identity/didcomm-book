@@ -27,7 +27,7 @@ Once a DIDComm agent receives a message from an unknown DID, it must:
 
 The sender, who's doing the rotation, should continue to send the rotation header until they receive a message from the other party using the new DID. This allows for continuity even if one party is offline or not processing messages for a while.
 
-Example code showing a DID Rotation after an Out of Band message can be found in the section [Starting, using and ending a DIDComm connection](startConnection) from this Guidebook.
+Example code showing a DID Rotation after an Out of Band message can be found in the section [Starting, using and ending a DIDComm connection](startConnection.md) from this Guidebook.
 
 Since DIDComm is asynchronous in nature, messages can arrive in different order. Sender and receiver should take care to:
 - Sender: avoid starting a DID rotation in the middle of multiple message conversations. If DID rotation arrives out of order, some messages may be discarded by the recipient.

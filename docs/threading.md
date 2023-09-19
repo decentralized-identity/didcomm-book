@@ -1,4 +1,4 @@
-## Threading
+# Threading
 
 DIDComm's threading mechanism enables referencing individual messages, the sets of messages that constitute a logically independent interaction (a "run" or "instance" of a protocol), or even the hierarchies of messages that model nested and recursive workflows. This helps with troubleshooting, debugging, error reporting, resend logic, interactions across more than two parties, and patterns of communication that are more flexible or asynchronous than simple request+response.
 
