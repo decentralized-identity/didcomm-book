@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Community Presentations
 Here is a chronological list of DIDComm v2 presentations, products, services, efforts, and more. Feel free to submit new links or updates [here](https://github.com/decentralized-identity/didcomm.org/tree/main/site/content/book/v2/scrapbook).
 
