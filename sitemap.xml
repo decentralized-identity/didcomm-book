@@ -16,6 +16,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://book.didcomm.org/business_applications/</loc>
+         <lastmod>2023-09-20</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://book.didcomm.org/developing_protocols/</loc>
          <lastmod>2023-09-20</lastmod>
          <changefreq>daily</changefreq>
@@ -32,6 +37,11 @@
     </url>
     <url>
          <loc>https://book.didcomm.org/faq/</loc>
+         <lastmod>2023-09-20</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://book.didcomm.org/general_concepts/</loc>
          <lastmod>2023-09-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
