@@ -1,4 +1,4 @@
-# DIDComm applied to Technology Verticals
+# Technology Verticals
 DIDComm can be used for many things. Some of these applications can be grouped into technology verticals, described below and detailed on related pages.
 
 

@@ -12,11 +12,10 @@ theme:
 
 nav:
   - Overview: 
-    - Home: index.md
-    - Why: why.md
-    - Applications: 
-      - index.md
-
+    - index.md
+    - general_concepts.md
+    - business_applications.md
+    - 'applications/index.md'
     - FAQ:  faq.md
     - OpenID4VC: oidc.md
     - scrapbook.md
@@ -30,7 +29,6 @@ nav:
       - startConnection.md
     - libraries.md
   - Protocols:
-    - applications/index.md
     - applications/vc_tech_vertical.md
     - applications/human_communication_tech_vertical.md
     - developing_protocols.md
