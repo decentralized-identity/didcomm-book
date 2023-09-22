@@ -1,9 +1,26 @@
-# DIDComm V2 Guidebook
+# Overview
+DIDComm is an open protocol for decentralized communication. You can use it to create
+trustworthy relationships between people and businesses in a privacy-preserving way.
 
-If you're a developer who wants to learn the practicalities of DIDComm -- getting started, common recipes, libraries and tools, the theory behind [the spec](https://identity.foundation/didcomm-messaging/spec/), or how your peers are solving interesting problems -- this is the place.
+It uses DIDs ([Decentralized Identifiers](https://www.w3.org/TR/did-core/)), to establish confidential, ongoing connections, without
+the need for usernames and passwords. You can then layer on existing services and applications
+on top of DIDComm to take advantage of DIDComm's security, privacy and decentralization.
+Read more about DIDComm and its benefits.
 
-This is a living doc, updated and expanded regularly by the [DIDComm User Group](https://github.com/decentralized-identity/didcomm-usergroup). If you have suggestions for the book, we welcome your [contributions](../maintainer-guide.md); reach out to us on [Discord](https://discord.gg/eNN4Wns6Jb) or [email](https://lists.identity.foundation/g/didcomm-usergroup) for help.
+## Developers
+- Open standards protocol, continually improved by an active community.
+- Fully decentralized with no central infrastructure.
+- Transport independent: supports https, websockets, Bluetooth, and more.
 
->This version of the book focuses on [DIDComm v2](https://identity.foundation/didcomm-messaging/spec/v2.0/) (the one incubated by DIF, finalized in early 2022). For info about migration from [DIDComm v1](https://github.com/hyperledger/aries-rfcs/tree/main/concepts/0005-didcomm), see [Appendix: Migration from DIDComm v1](migration-v1.md). A new version of DIDComm, v3, is imagined. This would be an IETF standard that builds on v2 with a session construct, improved binary support, leaner messages for IoT, and so forth. When we have links for that work, we'll add them here. 
+See the [Quick Start](quickstart.md) guide for developers, or [browse the protocols](https://didcomm.org/search/) available to use.
 
->This book is a community-supported resource. Corrections and contributions are welcome at our [GitHub Repo](https://github.com/decentralized-identity/didcomm-book/).
+## Applications
+See the applications of DIDComm for:
+
+- [Verifiable Credentials](applications/vc_tech_vertical.md)
+- [Human communication](applications/human_communication_tech_vertical.md)
+
+## Community
+Join the [DIDComm User Group](workinggroups.md).
+
+>Note: This book is a community-supported resource, under regular improvement. Corrections and contributions are welcome at our [GitHub Repo](https://github.com/decentralized-identity/didcomm-book/).
