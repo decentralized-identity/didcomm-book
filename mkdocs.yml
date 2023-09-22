@@ -20,7 +20,7 @@ nav:
     - OpenID4VC: oidc.md
     - scrapbook.md
   - Quick Start: 
-    - intro.md
+    - quickstart.md
     - basics.md
     - 'Hello World':
       - hellolibstools.md
