@@ -1,27 +1,23 @@
-## OID4VC
+# DIDComm and OpenID for Verifiable Credentials
 
-DIDComm is often compared with OpenID for Verifiable Credentials (OID4VC). 
+The [OpenID for Verifiable Credentials](https://openid.net/sg/openid4vc/) protocols are focused protocols that follow patterns familiar with uses of the OpenID family of specs. The OID4VC protocols for Issuance and Verification are capable of issuing and presenting credentials of a variety of formats. DIDComm Protocols work very well alongside OID4VC protocols, and we'll explain how.
 
-These protocols do have overlapping concerns as related to Verifiable Credentials, but approach the exchange of them differently. In addition to the similarities, the each have some unique and useful properties.
+## Verifiable Credentials
+Both sets of protocols are credential type agnostic - they can issue or present credentials of any type. Further, these protocols are capable of presenting credentials issued via the other protocol. Credentials issued via [OID4VCI](https://openid.net/sg/openid4vc/specifications/) can be presented via [applications/vc_tech_vertical.md](DIDComm PresentProof), and vice versa.
 
-### Password Friendly Security Model
+In addition to cross presentation and issuance, OID4VC users can benefit from the other credential-related features DIDComm provides. DIDComm provides messaging from the Issuer (or Verifier) to the holder without prior interaction. This communication is secure and mobile-device friendly. This enables prompting user action necessary for issuance or presentation in situations where the user is not anticipating the need. DIDComm also has a Revocation Notification protocol that allows the Issuer to notify the Holder that an issued credential has been revoked. This can smooth a user experience and prevent the presentation of a revoked credential, or facilitate the reissuance of replacement.
 
-The flow of OID4VC allows for an iframe to be used for the verification of a password or other secrets. This allows the user to authenticate to the Identity Provider (IdP) without the Relying Party (RP) being able to observe the exchange. This is really the sweet spot for OpenID, and has been carried to the VC exchange protocols as well. DIDComm does not currently have a direct replacement for this flow.
+DIDComm protocols exist for many features beyond Verifiable Credentials. The next section includes notes about [human oriented communication](applications/human_communication_tech_vertical.md), which can often be used in concert with VC protocols to explain credential or business process details using longer explanations.
 
-### Different Connection Model
+## Human Communication
 
-The OpenID based flow doesn't allow for very effective communication without the user in the loop. This is sometimes desirable, but limits it's applicability for more automated flows.
+DIDComm has [protocols](applications/human_communication_tech_vertical.md) for Messaging, Question & Answer, and even a basic menu behavior. These protocols can augment the experience of Verifiable Credential exchange, but can also be used to leverage the trust gained from VC exchange into other activities. Sending notifications, checking confirmations, and asking questions are all things easily accomplished with existing protocols.
 
-DIDComm has the ability to transfer messages without involvement of the user, when applicable. 
+## All DIDComm Protocols
 
-### Message Types
+DIDComm Protocols are easy to create for any purpose. Secure interaction is easy to facilitate, and DIDComm protocols help supply that functionlity.
 
-DIDComm has the built-in ability to transfer protocol messages of any type, not only those concerned with the issuance or verification of Verifiable Credentials. This allows for richer interaction beyond the uses focused on Verifable Credentials.
+## What's required?
 
-## Combined Use
+In order to turn an OID4VC interaction into a DIDComm connection, the OID4VC exchange must include a DID that contains a DIDComm service endpoint, or can be updated to include a DIDComm Service Endpoint. Ideally, both parties share their DID in the exchange, allowing either to initiate a DIDComm relationship.
 
-The different properties of the protocols make them very useful to each other.
-
-When exchanging a credential with OID4VC, a DID is often passed. If that DID resolves to a DID Document with a DIDComm Service Endpoint, then future, rich interactions can be continued via DIDComm.
-
-If the parties in a DIDComm relationship need to verify identity via secret checking with an RP, they can lean on OID4VC (or OpenID, if a credential is not involved) for that interaction.
