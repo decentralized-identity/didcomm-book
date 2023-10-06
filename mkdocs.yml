@@ -27,7 +27,7 @@ nav:
       - helloencrypt.md
       - helloworldpy.md
       - startConnection.md
-    - libraries.md
+  - libraries.md
   - Protocols:
     - applications/vc_tech_vertical.md
     - applications/human_communication_tech_vertical.md
