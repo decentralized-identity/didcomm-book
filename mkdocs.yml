@@ -17,7 +17,7 @@ nav:
     - business_applications.md
     - 'applications/index.md'
     - FAQ:  faq.md
-    - OpenID4VC: oidc.md
+    - OpenID4VC: oid4vc.md
     - scrapbook.md
   - Quick Start: 
     - quickstart.md
