@@ -1,5 +1,6 @@
 site_name: DIDComm Book
 site_url: https://book.didcomm.org/
+repo_url: https://github.com/decentralized-identity/didcomm-book
 theme:
   name: material
   palette:
@@ -9,6 +10,8 @@ theme:
     - navigation.tabs
     - navigation.tabs.sticky
     - navigation.indexes
+  icon:
+    repo: fontawesome/brands/github
 
 nav:
   - Overview: 
