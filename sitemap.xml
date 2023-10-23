@@ -2,172 +2,172 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://book.didcomm.org/</loc>
-         <lastmod>2023-10-06</lastmod>
+         <lastmod>2023-10-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://book.didcomm.org/authentication/</loc>
-         <lastmod>2023-10-06</lastmod>
+         <lastmod>2023-10-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://book.didcomm.org/basics/</loc>
-         <lastmod>2023-10-06</lastmod>
+         <lastmod>2023-10-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://book.didcomm.org/business_applications/</loc>
-         <lastmod>2023-10-06</lastmod>
+         <lastmod>2023-10-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://book.didcomm.org/developing_protocols/</loc>
-         <lastmod>2023-10-06</lastmod>
+         <lastmod>2023-10-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://book.didcomm.org/didrotation/</loc>
-         <lastmod>2023-10-06</lastmod>
+         <lastmod>2023-10-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://book.didcomm.org/extensions/</loc>
-         <lastmod>2023-10-06</lastmod>
+         <lastmod>2023-10-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://book.didcomm.org/faq/</loc>
-         <lastmod>2023-10-06</lastmod>
+         <lastmod>2023-10-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://book.didcomm.org/general_concepts/</loc>
-         <lastmod>2023-10-06</lastmod>
+         <lastmod>2023-10-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://book.didcomm.org/helloencrypt/</loc>
-         <lastmod>2023-10-06</lastmod>
+         <lastmod>2023-10-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://book.didcomm.org/hellolibstools/</loc>
-         <lastmod>2023-10-06</lastmod>
+         <lastmod>2023-10-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://book.didcomm.org/helloworldpy/</loc>
-         <lastmod>2023-10-06</lastmod>
+         <lastmod>2023-10-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://book.didcomm.org/libraries/</loc>
-         <lastmod>2023-10-06</lastmod>
+         <lastmod>2023-10-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://book.didcomm.org/migratorscript/</loc>
-         <lastmod>2023-10-06</lastmod>
+         <lastmod>2023-10-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://book.didcomm.org/mitm/</loc>
-         <lastmod>2023-10-06</lastmod>
+         <lastmod>2023-10-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://book.didcomm.org/mobileagents/</loc>
-         <lastmod>2023-10-06</lastmod>
+         <lastmod>2023-10-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://book.didcomm.org/oidc/</loc>
-         <lastmod>2023-10-06</lastmod>
+         <loc>https://book.didcomm.org/oid4vc/</loc>
+         <lastmod>2023-10-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://book.didcomm.org/pfs/</loc>
-         <lastmod>2023-10-06</lastmod>
+         <lastmod>2023-10-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://book.didcomm.org/privacy/</loc>
-         <lastmod>2023-10-06</lastmod>
+         <lastmod>2023-10-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://book.didcomm.org/problemcodes/</loc>
-         <lastmod>2023-10-06</lastmod>
+         <lastmod>2023-10-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://book.didcomm.org/problems/</loc>
-         <lastmod>2023-10-06</lastmod>
+         <lastmod>2023-10-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://book.didcomm.org/quickstart/</loc>
-         <lastmod>2023-10-06</lastmod>
+         <lastmod>2023-10-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://book.didcomm.org/repos/</loc>
-         <lastmod>2023-10-06</lastmod>
+         <lastmod>2023-10-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://book.didcomm.org/routing/</loc>
-         <lastmod>2023-10-06</lastmod>
+         <lastmod>2023-10-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://book.didcomm.org/scrapbook/</loc>
-         <lastmod>2023-10-06</lastmod>
+         <lastmod>2023-10-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://book.didcomm.org/startConnection/</loc>
-         <lastmod>2023-10-06</lastmod>
+         <lastmod>2023-10-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://book.didcomm.org/threading/</loc>
-         <lastmod>2023-10-06</lastmod>
+         <lastmod>2023-10-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://book.didcomm.org/timeouts/</loc>
-         <lastmod>2023-10-06</lastmod>
+         <lastmod>2023-10-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://book.didcomm.org/whatsnew/</loc>
-         <lastmod>2023-10-06</lastmod>
+         <lastmod>2023-10-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://book.didcomm.org/why/</loc>
-         <lastmod>2023-10-06</lastmod>
+         <lastmod>2023-10-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://book.didcomm.org/workinggroups/</loc>
-         <lastmod>2023-10-06</lastmod>
+         <lastmod>2023-10-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://book.didcomm.org/applications/</loc>
-         <lastmod>2023-10-06</lastmod>
+         <lastmod>2023-10-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://book.didcomm.org/applications/human_communication_tech_vertical/</loc>
-         <lastmod>2023-10-06</lastmod>
+         <lastmod>2023-10-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://book.didcomm.org/applications/vc_tech_vertical/</loc>
-         <lastmod>2023-10-06</lastmod>
+         <lastmod>2023-10-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
