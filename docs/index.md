@@ -18,7 +18,7 @@ See the [Quick Start](quickstart.md) guide for developers, or [browse the protoc
 See the applications of DIDComm for:
 
 - [Verifiable Credentials](applications/vc_tech_vertical.md)
-- [Human communication](applications/human_communication_tech_vertical.md)
+- [Human communication](applications/human_communication_tech_vertical.md).
 
 ## Community
 Join the [DIDComm User Group](workinggroups.md).
