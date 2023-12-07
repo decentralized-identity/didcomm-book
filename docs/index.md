@@ -13,7 +13,7 @@ With DIDComm, you keep your options open. It can work alongside OpenID4VC. It en
 DIDComm developer benefits include:
 
 - Open standards protocol, continually improved by an active community.
-- Fully decentralized with no API.
+- Fully decentralized with no central infrastructure or control.
 - Transport independent: supports https, websockets, bluetooth, and more.
 - Works well with related technologies, including blockchain, KERI, verifiable credentials, etc.
 
