@@ -32,7 +32,7 @@ Decentralized Identifiers (DIDs) are a type of identifier that enables verifiabl
 
 DIDComm uses DIDs to bring the benefits of decentralization and confidentiality to many types of communication.
 
-Other secure communication solutions already exist. However, most rely on centralized approaches such as key registries, identity providers, or certificate authorities. Many are only for unstructured chat, or enable features through proprietary extensions. They may also assume a single transport (e.g. web), making it difficult to use in a range of situations.
+Other secure communication solutions already exist. However, most rely on centralized approaches such as server-based architectures with the requirements for hosted components. Many are only for unstructured chat, or enable features through proprietary extensions. They may also assume a single transport (e.g. https), making it difficult to use in a range of situations.
 
 DIDComm fixes these problems. It delivers a foundation of security, privacy, and decentralization. It works over web, bluetooth, and many more transports. And any DIDComm protocols you use, for messaging to verifiable credentials and more, automatically inherit these benefits.
 
