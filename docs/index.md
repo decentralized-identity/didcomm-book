@@ -14,7 +14,8 @@ DIDComm developer benefits include:
 
 - Open standards protocol, continually improved by an active community.
 - Fully decentralized with no API.
-- Transport independent: supports peer-to-peer, web, bluetooth, blockchain, KERI, and more.
+- Transport independent: supports https, websockets, bluetooth, and more.
+- Works well with related technologies, including blockchain, KERI, verifiable credentials, etc.
 
 See the [Quick Start](quickstart.md) guide for developers, or [browse the protocols](https://didcomm.org/search/) available to use.
 
