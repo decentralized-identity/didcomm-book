@@ -34,7 +34,7 @@ DIDComm uses DIDs to bring the benefits of decentralization and confidentiality 
 
 Other secure communication solutions already exist. However, most rely on centralized approaches such as server-based architectures with the requirements for hosted components. Many are only for unstructured chat, or enable features through proprietary extensions. They may also assume a single transport (e.g. https), making it difficult to use in a range of situations.
 
-DIDComm fixes these problems. It delivers a foundation of security, privacy, and decentralization. It works over web, bluetooth, and many more transports. And any DIDComm protocols you use, for messaging to verifiable credentials and more, automatically inherit these benefits.
+DIDComm fixes these problems. It delivers a foundation of security, privacy, and decentralization. It works over https, websockets, bluetooth, and other transports. Any DIDComm protocols you use, for messaging to verifiable credentials and more, automatically inherit these benefits.
 
 Applications of DIDComm include online identities, creating and maintaining relationships, buying and selling, scheduling events, negotiating contracts, issuing licenses and permits, presenting tickets for travel, applying to employers or schools or banks, arranging healthcare, playing games, and voting.
 
