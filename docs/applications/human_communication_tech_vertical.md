@@ -1,5 +1,5 @@
 # DIDComm for Human Communication
-DIDComm Protocols for Human Communication allow for the interactions between two parting using human focused communication.
+DIDComm Protocols for Human Communication allow for the interactions between two parties using human focused communication.
 
 ## Related Protocols
 Note that DIDComm allows the use of various protocols between parties. These human oriented communication protocols blend well with protocols of many other types, including but not limited to Verifiable Credentials and other forms of data exchange.
@@ -13,6 +13,11 @@ Facilitates the asking and answering of fixed answer questions. This is typicall
 ## [Action Menu](https://didcomm.org/action-menu/2.0/)
 Provides a menu and basic form interface between parties. This is typically between a human and a service, allowing the human to be aware of and invoke process flows provided by the service.
 
+## [User Profile](https://didcomm.org/user-profile/1.0/)
+Facilitates the sharing of user profile information between parties. This is typically between a human and a service, allowing the human to be aware of and consent to sharing basic profile information.
+
+## [Media Sharing](https://didcomm.org/media-sharing/1.0/)
+Allows birectional sharing of large media files between parties. The protocol shares file metadata by reference to offload file processing workloads (upload/storage/download) from the protocol.
 
 ## Additional Protocol Development
 DIDComm supports the development of additional protocols. Creating a new protocol and promoting it can add useful funcationality into the ecosystem. Support for these protocols can be detected with the [Discover Features](https://didcomm.org/discover-features/2.0/) protocol when communicating with other software.
