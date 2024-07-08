@@ -19,7 +19,7 @@ As we've mentioned mediators typically exist to serve as a stand-in for a missin
 
 ### Inbound Mediation Flow
 
-![Inbound mediation flow diagram](inbound-mediation.png)
+![Inbound mediation flow diagram](inbound-mediation.svg)
 
 ### The Forward Message
 The core of inbound mediation is the `forward` message. Simply put, forward messages are wrappers, addressed and encrypted to mediators, with an additional payload that is encrypted for the ultimate recipient. This allows messages of any type to be passed to and through a mediator, without a strong degree of trust in the mediator. The mediator is incapable of reading the encrypted payload. 
