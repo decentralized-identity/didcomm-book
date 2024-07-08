@@ -5,7 +5,7 @@ Mediation is the process of relaying messages from a sender to a recipient, thro
 Different types of mediators exist, thought the most common is an Inbound Mediator. Other mediator types are discussed in Advanced Topics.
 
 ## Why Do We Need Mediation?
-To understand why mediators exist, we must first distinguish between different types of agents. Two primary kinds of agents exist, cloud agents and edge agents. Cloud agents, as their name implies, exist in the cloud. A primary characteristic of these agents is a fixed endpoint for communication. Edge agents include devices such as smartphones, personal computers, and other mobile devices. Such devices have ephemeral addresses and cannot be reliably communicated with at a specific endpoint. <link to more detailed descr of agent types?> 
+To understand why mediators exist, we must first distinguish between different types of agents. Two primary kinds of agents exist, cloud agents and edge agents. Cloud agents, as their name implies, exist in the cloud. A primary characteristic of these agents is a fixed endpoint for communication. Edge agents include devices such as smartphones, personal computers, and other mobile devices. Such devices have ephemeral addresses and cannot be reliably communicated with at a specific endpoint.
 
 Mediators primarily exist to bridge the gap between cloud agents and edge agents. A mediator has a persistent, fixed endpoint that can be accessed by edge agents and cloud agents alike. Edge agents who are granted mediation can report the mediator's information to other agents. These other agents can then send messages to the mediator's fixed endpoint, and the mediator will either pass them along to the mediated client or hold on to them until the client picks them up. 
 
