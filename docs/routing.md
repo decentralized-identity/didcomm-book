@@ -1,6 +1,5 @@
 # Routing 
 
-# Introduction
 Mediation is the process of relaying messages from a sender to a recipient, through one or more intermediate steps. These steps are called mediators. Mediators allow for reliability in message delivery and enhanced privacy for network-challenged agents. 
 
 Different types of mediators exist, thought the most common is an Inbound Mediator. Other mediator types are discussed in Advanced Topics.
@@ -11,7 +10,7 @@ To understand why mediators exist, we must first distinguish between different t
 Mediators primarily exist to bridge the gap between cloud agents and edge agents. A mediator has a persistent, fixed endpoint that can be accessed by edge agents and cloud agents alike. Edge agents who are granted mediation can report the mediator's information to other agents. These other agents can then send messages to the mediator's fixed endpoint, and the mediator will either pass them along to the mediated client or hold on to them until the client picks them up. 
 
 ### Sidebar: Mediator vs. Relay
-This concept of mediation has existed for [as long as DIDComm has?]. Historically, agents that relayed messages have been referred to as mediators. However, the term "mediator" implies a level of authority in a given interaction, and these agents have no inherent authority. The term "relay" has relatively recently been proposed as a replacement, more accurately capturing the unopinionated, unauthoritative nature of these agents. 
+This concept of mediation has existed for as long as DIDComm has. Historically, agents that relayed messages have been referred to as mediators. However, the term "mediator" implies a level of authority in a given interaction, and these agents have no inherent authority. The term "relay" has relatively recently been proposed as a replacement, more accurately capturing the unopinionated, unauthoritative nature of these agents. 
 In a future version of the DIDComm standard, "relay" will likely replace "mediator" as the official term. However, "mediator" has been used here to avoid confusion with the current specification.
 
 ## How Does Mediation Work?
@@ -40,9 +39,8 @@ As an example, you might have one mediator set up for high-priority connections,
 ## Additional Types of Mediators
 
 ### Outbound Mediator
-[Don't know much about this, so I'm kinda guessing here lol]
 Outbound mediators exist to obscure the sender of a message. A sender can send a message to an outbound mediator, which then actively sends along the message to the intended recipient. The recipient then sees the outbound mediator as the sender of the message, rather than the actual sender.
 
 ### Hidden Mediator
-A hidden mediator is a mediator that is unknown to the sender [fact check this]. Inbound mediators are known to be mediators, and thus senders will wrap messages in `forward` messages. With a hidden mediator, senders will simply pack messages to the hidden mediator directly, not wrapping their messages as `forward` messages. 
-This requires a close coupling of mediator-to-agent and a high degree of trust. Typically, a hidden mediator will be deployed [as a part of? with? by the same entity as?] another agent's deployment. This can be useful to bypass issues with exposing endpoints of agents behind firewalls. Hidden mediators can also be instantiated between an inbound mediator and an agent that is incapable of polling for messages from said inbound mediator, allowing such an agent to use an inbound mediator. 
+A hidden mediator is a mediator that is unknown to the sender. Inbound mediators are known to be mediators, and thus senders will wrap messages in `forward` messages. With a hidden mediator, senders will simply pack messages to the hidden mediator directly, not wrapping their messages as `forward` messages. 
+This requires a close coupling of mediator-to-agent and a high degree of trust. Typically, a hidden mediator will be deployed with another agent's deployment. This can be useful to bypass issues with exposing endpoints of agents behind firewalls. Hidden mediators can also be instantiated between an inbound mediator and an agent that is incapable of polling for messages from said inbound mediator, allowing such an agent to use an inbound mediator. 
