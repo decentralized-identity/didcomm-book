@@ -97,7 +97,7 @@ plt.imshow(image , cmap = 'gray')
 -- INSERT_QR_CODE_IMAGE_HERE --
 
 ### Step 4: Receiving the OOB message
-Once Bob receives the email or scan the QR code, he can easily decod it and read Alice's message:
+Once Bob receives the email or scan the QR code, he can easily decode it and read Alice's message:
 ```
 received_msg_encoded = oob_url.split("=")[1]
 received_msg_decoded = json.loads(str(base64.urlsafe_b64decode(received_msg_encoded + "=="), "utf-8"))
