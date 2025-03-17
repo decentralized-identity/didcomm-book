@@ -1353,7 +1353,7 @@ plt.imshow(image , cmap = 'gray')
 </code></pre>
 <p>-- INSERT_QR_CODE_IMAGE_HERE --</p>
 <h3 id="step-4-receiving-the-oob-message">Step 4: Receiving the OOB message<a class="headerlink" href="#step-4-receiving-the-oob-message" title="Permanent link">&para;</a></h3>
-<p>Once Bob receives the email or scan the QR code, he can easily decod it and read Alice's message:</p>
+<p>Once Bob receives the email or scan the QR code, he can easily decode it and read Alice's message:</p>
 <pre><code>received_msg_encoded = oob_url.split(&quot;=&quot;)[1]
 received_msg_decoded = json.loads(str(base64.urlsafe_b64decode(received_msg_encoded + &quot;==&quot;), &quot;utf-8&quot;))
 print(received_msg_decoded)
