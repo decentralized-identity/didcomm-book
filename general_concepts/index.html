@@ -387,9 +387,81 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          General Concepts
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         General Concepts
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-didcomm" class="md-nav__link">
+    What is DIDComm?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#core-principles" class="md-nav__link">
+    Core Principles
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-components" class="md-nav__link">
+    Key Components
+  </a>
+  
+    <nav class="md-nav" aria-label="Key Components">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dids-and-did-documents" class="md-nav__link">
+    DIDs and DID Documents
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agents" class="md-nav__link">
+    Agents
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#messages" class="md-nav__link">
+    Messages
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1093,6 +1165,62 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-didcomm" class="md-nav__link">
+    What is DIDComm?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#core-principles" class="md-nav__link">
+    Core Principles
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-components" class="md-nav__link">
+    Key Components
+  </a>
+  
+    <nav class="md-nav" aria-label="Key Components">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dids-and-did-documents" class="md-nav__link">
+    DIDs and DID Documents
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agents" class="md-nav__link">
+    Agents
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#messages" class="md-nav__link">
+    Messages
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1110,7 +1238,31 @@
 
 
 <h1 id="general-concepts">General Concepts<a class="headerlink" href="#general-concepts" title="Permanent link">&para;</a></h1>
-<p>TODO</p>
+<h2 id="what-is-didcomm">What is DIDComm?<a class="headerlink" href="#what-is-didcomm" title="Permanent link">&para;</a></h2>
+<p>DIDComm (Decentralized Identifier Communication) is a secure, privacy-preserving messaging protocol that enables direct communication between decentralized digital agents. Built on the foundation of Decentralized Identifiers (DIDs), DIDComm allows entities to exchange messages without relying on centralized intermediaries or exposing metadata to third parties.</p>
+<p>At its core, DIDComm provides a standardized way for digital agents to discover each other's capabilities, establish secure communication channels, and exchange structured messages. This enables applications ranging from credential verification to secure peer-to-peer messaging, all while maintaining user privacy and control.</p>
+<p>DIDComm sits within the broader self-sovereign identity ecosystem, providing the communication layer that connects DID-based identities with practical applications. It transforms DIDs from static identifiers into dynamic communication endpoints.</p>
+<p>At it's core, DIDComm is a secure way to communicate, that is also friendly to the devices that humans use. Portable devices are not great hosts of APIs in the traditional sense, which has excluded them from enabling users to be first-class citizens on the Internet. DIDComm carries many similar attributes with APIs, but fixes the device friendlyness issue.</p>
+<h2 id="core-principles">Core Principles<a class="headerlink" href="#core-principles" title="Permanent link">&para;</a></h2>
+<p><strong>Decentralization</strong>: DIDComm operates without central authorities or single points of failure. Participants communicate directly using their DIDs, maintaining control over their own communication channels and data.</p>
+<p><strong>Privacy and Security by Design</strong>: All communication is end-to-end encrypted by default. Message metadata is minimized and protected, ensuring that even transport providers cannot access message contents or detailed routing information. Because it promotes direct communication between parties, DIDComm naturally discourages surveilance. Those designing DIDComm protocols should avoid adding surveilance (including phoning home) back in to the protocol architecture.</p>
+<p><strong>Interoperability</strong>: DIDComm is designed to work across different platforms, devices, and implementations. The protocol is transport-agnostic, meaning it can operate over HTTP, WebSocket, Bluetooth, or other communication channels. The trust and security of DIDComm does not rely on the attributes of it's transport.</p>
+<p><strong>Agent-Centric Architecture</strong>: Communication happens between software agents acting on behalf of entities (people, organizations, or devices). These agents manage keys, route messages, and handle protocol interactions autonomously.</p>
+<p><strong>End-to-End Encryption</strong>: Messages are encrypted using the recipient's public keys, ensuring only the intended recipient can decrypt and read the content. This provides confidentiality and authenticity without trusting intermediaries.</p>
+<h2 id="key-components">Key Components<a class="headerlink" href="#key-components" title="Permanent link">&para;</a></h2>
+<h3 id="dids-and-did-documents">DIDs and DID Documents<a class="headerlink" href="#dids-and-did-documents" title="Permanent link">&para;</a></h3>
+<p>DIDs serve as the addressing mechanism in DIDComm. Each participant has a DID that resolves to a DID document containing cryptographic keys and service endpoints. The DID document specifies how to reach the entity's agent and which keys to use for encryption and signing.</p>
+<p>Service endpoints in DID documents indicate where messages should be delivered, while the associated keys enable secure communication including the use of message relays (mediators). Key management through DID documents allows for key rotation and multiple key types for different purposes.</p>
+<h3 id="agents">Agents<a class="headerlink" href="#agents" title="Permanent link">&para;</a></h3>
+<p>Agents are software components that send, receive, and process DIDComm messages on behalf of their owners. They handle the cryptographic operations, message routing, and protocol execution required for DIDComm communication.</p>
+<p><strong>Edge agents</strong> typically run on user devices (phones, computers) and provide direct access to DIDComm functionality. They store private keys locally and make protocol decisions on behalf of their users.</p>
+<p><strong>Relay (Mediator) agents</strong> provide routing services for agents that cannot be directly reached (such as mobile devices behind NAT or agents that are temporarily offline). They forward messages without being able to decrypt their contents.</p>
+<p>Agents maintain the state of ongoing protocols, manage relationships with other agents, and provide the user interface for DIDComm interactions.</p>
+<h3 id="messages">Messages<a class="headerlink" href="#messages" title="Permanent link">&para;</a></h3>
+<p>DIDComm messages are structured JSON documents that contain both headers and payload data. The message format supports different types of content while maintaining consistency across all DIDComm interactions.</p>
+<p>Message headers include metadata such as the message type, sender and recipient information, and protocol-specific fields. The standardized header structure enables agents to process messages efficiently and route them correctly.</p>
+<p>Different message types serve various purposes: basic messages for simple communication, connection messages for establishing relationships, credential exchange messages for sharing verifiable credentials, and problem reports for error handling.</p>
+<p>The message structure is designed to be both human-readable during development and efficient for automated processing by agents.</p>
 <blockquote>
 <p>Note: This book is a community-supported resource, under regular improvement. Corrections and contributions are welcome at our <a href="https://github.com/decentralized-identity/didcomm-book/">GitHub Repo</a>.</p>
 </blockquote>
